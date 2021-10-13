@@ -26,14 +26,12 @@ namespace AnonymousChat
             string message = string.Join(" ", command);
             var c = Main.Instance.Configuration.Instance;
             string format = c.Format.Replace('{', '<').Replace('}', '>').Replace("%MESSAGE%", message);
-            if (command.Count() != 0)
-            {
-                ChatManager.serverSendMessage(format, Color.white, null, null, EChatMode.SAY, c.ImgUrl, true);
-            }
-            else
+            if (command.Lenght == 0)
             {
                 UnturnedChat.Say(caller, "Usage : /anonchat <message> (or /ac <message>)", Color.red);
+                return;               
             }
+            ChatManager.serverSendMessage(format, Color.white, null, null, EChatMode.SAY, c.ImgUrl, true);
         }
     }
 }
